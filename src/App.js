@@ -8,7 +8,7 @@ function App() {
   <Router>
     <div className="d-flex">
       <nav
-        className="bg-success border-end vh-100 pt-3"
+        className="bg-success border-end vh-100 pt-3 sticky-top" 
         style={{ width: '200px' }}
       >
         <h2 className='text-white text-center'><b>LANEMAN</b></h2>
