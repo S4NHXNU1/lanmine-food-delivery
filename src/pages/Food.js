@@ -32,7 +32,7 @@ export default function Food() {
                         <IconFlame className='text-danger' stroke={2} style={{width: '64px', height: '64px'}} />
                         <div className='d-flex flex-column ms-2 my-auto text-danger'>
                             <h3 className='mb-0 text-start'>Hot Deals</h3>
-                            <b className='mb-0 text-start' style={{fontSize: '0.75rem'}}>Every Restaurant</b>
+                            <b className='mb-0 text-start' style={{fontSize: '0.75rem'}}>13.13 Flash Sale</b>
                         </div>
                         <IconChevronRight stroke={3} className='text-danger ms-3 my-auto' />
                     </div>
@@ -42,7 +42,7 @@ export default function Food() {
                         <IconBrandAppgallery className='text-white' stroke={2} style={{width: '64px', height: '64px'}} />
                         <div className='d-flex flex-column ms-2 my-auto text-white'>
                             <h3 className='mb-0 text-start'>Special Restaurant</h3>
-                            <b className='mb-0 text-start' style={{fontSize: '0.75rem'}}>LANEMAN ONLY</b>
+                            <b className='mb-0 text-start' style={{fontSize: '0.75rem'}}>LANDMINE ONLY</b>
                         </div>
                         <IconChevronRight stroke={3} className='text-white ms-3 my-auto' />
                     </div>
