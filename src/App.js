@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import Food from './pages/Food';
 import { IconBurger, IconHistory, IconSettings } from '@tabler/icons-react';
+import McDonald from './pages/McDonald';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <div className="p-4 flex-grow-1">
         <Routes>
           <Route path="/" element={<Food />} />
+          <Route path="/mcdonald" element={<McDonald />} />
         </Routes>
       </div>
     </div>

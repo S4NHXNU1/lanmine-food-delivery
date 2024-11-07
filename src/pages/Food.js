@@ -27,7 +27,9 @@ export default function Food() {
             </div>
             <PromoCard />
             <FoodCat />
-            <div class="btn btn-light flex-grow-1 card my-3">
+            <div class="btn btn-light flex-grow-1 card my-3" onClick={() => {
+                window.location.href = '/mcdonald';
+            }}>
                 <div class="card-body d-flex flex-row justify-content-between">
                     <div className='d-flex flex-row'>
                         <IconBrandMcdonalds className='text-warning' style={{width: '64px', height: '64px'}} />
