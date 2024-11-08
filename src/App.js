@@ -12,7 +12,7 @@ function App() {
         className="bg-success border-end vh-100 pt-3 sticky-top" 
         style={{ width: '200px' }}
       >
-        <h2 className='text-white text-center'><b>LANDMINE</b></h2>
+        <h2 className='text-white text-center'><b>LANMINE</b></h2>
         <ul className="nav d-flex flex-column justify-content-between" style={{ height: '92vh' }}>
           <div>
             <li className="nav-item">

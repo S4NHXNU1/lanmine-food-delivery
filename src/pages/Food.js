@@ -43,6 +43,7 @@ export default function Food() {
                                 <div style={{background: '#fccace'}} className='card d-flex flex-row border-danger'>
                                     <IconMoped stroke={2} className='text-danger my-auto ms-2 me-1' style={{width: '0.8rem', height: '0.8rem'}} />
                                     <b className='mb-0 text-white me-2 bg-danger' style={{fontSize: '0.75rem'}}>&nbsp;฿0&nbsp;</b>
+                                    <s className='mb-0 text-secondary me-2' style={{fontSize: '0.75rem'}}>฿5</s>
                                 </div>
                                 <p className='mb-0 ms-1 text-start' style={{fontSize: '0.75rem'}}>| 500 m (10 min)</p>
                             </div>
@@ -64,6 +65,7 @@ export default function Food() {
                                 <div style={{background: '#fccace'}} className='card d-flex flex-row border-danger'>
                                     <IconMoped stroke={2} className='text-danger my-auto ms-2 me-1' style={{width: '0.8rem', height: '0.8rem'}} />
                                     <b className='mb-0 text-white me-2 bg-danger' style={{fontSize: '0.75rem'}}>&nbsp;฿2&nbsp;</b>
+                                    <s className='mb-0 text-secondary me-2' style={{fontSize: '0.75rem'}}>฿8</s>
                                 </div>
                                 <p className='mb-0 ms-1 text-start' style={{fontSize: '0.75rem'}}>| 1.2 km (20 min)</p>
                             </div>
