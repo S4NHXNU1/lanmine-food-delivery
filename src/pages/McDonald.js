@@ -8,7 +8,7 @@ export default function McDonald() {
                 <div class="card-body d-flex flex-row justify-content-between">
                     <div className='d-flex flex-row'>
                         <img 
-                            src='/pics/BigMac.jpeg'
+                            src='/pics/BigMac.png'
                             style={{ width: '100px', height: '100px', left: '0' , objectFit: 'cover' }}
                         />
                         <div className='d-flex flex-column ms-4 my-auto'>

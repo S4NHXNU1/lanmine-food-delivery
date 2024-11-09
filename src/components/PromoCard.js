@@ -37,7 +37,7 @@ export default function PromoCard() {
                         <IconBrandAppgallery className='text-white' stroke={2} style={{width: '64px', height: '64px'}} />
                         <div className='d-flex flex-column ms-2 my-auto text-white'>
                             <h3 className='mb-0 text-start'>Special Restaurant</h3>
-                            <b className='mb-0 text-start' style={{fontSize: '0.75rem'}}>LANDMINE ONLY</b>
+                            <b className='mb-0 text-start' style={{fontSize: '0.75rem'}}>LANMINE ONLY</b>
                         </div>
                     </div>
                     <IconChevronRight stroke={3} className='text-white ms-3 my-auto' />
