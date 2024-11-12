@@ -8,12 +8,25 @@ import {
 from '@tabler/icons-react';
 import PromoCard from '../components/PromoCard';
 import FoodCat from '../components/FoodCat';
+import UnavailableToast from '../components/UnavailableToast';
+import { Toast } from 'bootstrap'
+import { useRef } from 'react';
 
 export default function Food() {
+
+    const toastRef = useRef(null);
+    const triggerToast = () => {
+        const toastElement = toastRef.current;
+        if (toastElement) {
+            const toastInstance = Toast.getOrCreateInstance(toastElement);
+            toastInstance.show();
+        }
+    };
+
     return (
         <div className="d-flex flex-column">
             <div className="d-flex flex-row gap-3">
-                <button class="btn text-center" style={{background: '#e3fcea'}}><IconMapPin className='text-success' stroke={2} /></button>
+                <button class="btn text-center" style={{background: '#e3fcea'}} onClick={triggerToast}><IconMapPin className='text-success' stroke={2} /></button>
                 <div className='d-flex flex-column w-25'>
                     <p className='mb-0' style={{fontSize: '0.75rem'}}>Deliver to:</p>
                     <b>Current Location</b>
@@ -51,7 +64,7 @@ export default function Food() {
                     </div>
                 </div>
             </div>
-            <div class="btn btn-light flex-grow-1 card my-3">
+            <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerToast}>
                 <div class="card-body d-flex flex-row justify-content-between">
                     <div className='d-flex flex-row'>
                         <IconPizzaFilled style={{width: '64px', height: '64px', color: '#198754'}} />
@@ -73,6 +86,8 @@ export default function Food() {
                     </div>
                 </div>
             </div>
+
+            <UnavailableToast ref={toastRef} />
         </div>
     );
 }

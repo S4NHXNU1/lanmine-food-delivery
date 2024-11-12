@@ -3,8 +3,21 @@ import './App.css';
 import Food from './pages/Food';
 import { IconBurger, IconHistory, IconSettings } from '@tabler/icons-react';
 import McDonald from './pages/McDonald';
+import { Toast } from 'bootstrap'
+import { useRef } from 'react';
+import UnavailableToast from './components/UnavailableToast';
 
 function App() {
+
+  const toastRef = useRef(null);
+    const triggerToast = () => {
+        const toastElement = toastRef.current;
+        if (toastElement) {
+            const toastInstance = Toast.getOrCreateInstance(toastElement);
+            toastInstance.show();
+        }
+    };
+
   return (
   <Router>
     <div className="d-flex">
@@ -21,7 +34,7 @@ function App() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/" className="nav-link fw-bold" style={{fontSize: '1.25rem'}}>
+              <Link className="nav-link fw-bold" style={{fontSize: '1.25rem'}} onClick={triggerToast}>
               <IconHistory stroke={2} className='me-2' />Orders
               </Link>
             </li>
@@ -38,6 +51,7 @@ function App() {
           <Route path="/" element={<Food />} />
           <Route path="/mcdonald" element={<McDonald />} />
         </Routes>
+        <UnavailableToast ref={toastRef} />
       </div>
     </div>
   </Router>

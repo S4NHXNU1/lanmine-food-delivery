@@ -1,10 +1,33 @@
 import McDonaldBanner from "../components/McDonaldBanner";
+import { Toast, Modal } from 'bootstrap'
+import { useRef } from 'react';
+import UnavailableToast from "../components/UnavailableToast";
+import BurgerModal from "../components/BurgerModal";
 
 export default function McDonald() {
+
+    const toastRef = useRef(null);
+    const triggerToast = () => {
+        const toastElement = toastRef.current;
+        if (toastElement) {
+            const toastInstance = Toast.getOrCreateInstance(toastElement);
+            toastInstance.show();
+        }
+    };
+
+    const modalRef = useRef(null);
+    const triggerModal = () => {
+        const modalElement = modalRef.current;
+        if (modalElement) {
+            const modalInstance = Modal.getOrCreateInstance(modalElement);
+            modalInstance.show();
+        }
+    };
+
     return (
         <div className="d-flex flex-column">
             <McDonaldBanner />
-            <div class="btn btn-light flex-grow-1 card my-3">
+            <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerModal}>
                 <div class="card-body d-flex flex-row justify-content-between">
                     <div className='d-flex flex-row'>
                         <img 
@@ -19,7 +42,7 @@ export default function McDonald() {
                     </div>
                 </div>
             </div>
-            <div class="btn btn-light flex-grow-1 card my-3">
+            <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerToast}>
                 <div class="card-body d-flex flex-row justify-content-between">
                     <div className='d-flex flex-row'>
                         <img 
@@ -34,7 +57,7 @@ export default function McDonald() {
                     </div>
                 </div>
             </div>
-            <div class="btn btn-light flex-grow-1 card my-3">
+            <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerToast}>
                 <div class="card-body d-flex flex-row justify-content-between">
                     <div className='d-flex flex-row'>
                         <img 
@@ -49,6 +72,8 @@ export default function McDonald() {
                     </div>
                 </div>
             </div>
+            <UnavailableToast ref={toastRef} />
+            <BurgerModal ref={modalRef} />
         </div>
     );
 }
