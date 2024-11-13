@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import { 
     IconSquareRoundedPlusFilled, 
     IconSquareRoundedMinusFilled } 
@@ -6,7 +6,29 @@ from "@tabler/icons-react";
 import { GetCookie, SetCookie } from "../util/Cookie";
 
 const BurgerModal = forwardRef((props, ref) => {
-    SetCookie('BigMacQTY', '1');
+    const [qty, setQty] = useState(1);
+    SetCookie('BigMacCartQTY', `${qty}`);
+
+    const { sendBack } = props;
+
+    const reduceQTY = () => {
+        if (qty > 0) {
+            if(GetCookie('Cart') !== '1' && qty === 1) return;
+            setQty(qty - 1);
+            SetCookie('BigMacCartQTY', `${qty}`);
+        }
+    }
+
+    const increaseQTY = () => {
+        setQty(qty + 1);
+        SetCookie('BigMacCartQTY', `${qty}`);
+    }
+
+    const addToCart = () => {
+        SetCookie('Cart', '1');
+        sendBack();
+    }
+
     return (
         <div ref={ref} class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -27,15 +49,15 @@ const BurgerModal = forwardRef((props, ref) => {
                         </div>
                     </div>
                     <div class="modal-footer d-flex flex-row">
-                        <IconSquareRoundedMinusFilled style={{cursor: 'pointer'}} />
-                        <span className="col-1 mb-0 mt-0 text-center">{GetCookie('BigMacQTY')}</span>
-                        <IconSquareRoundedPlusFilled style={{cursor: 'pointer'}} />
-                        {GetCookie('BigMacQTY') == '0' ? 
-                        <button type="button" className="col btn btn-danger border-0 px-3">
+                        <IconSquareRoundedMinusFilled style={{cursor: 'pointer'}} onClick={reduceQTY} />
+                        <span className="col-1 mb-0 mt-0 text-center">{GetCookie('BigMacCartQTY')}</span>
+                        <IconSquareRoundedPlusFilled style={{cursor: 'pointer'}} onClick={increaseQTY} />
+                        {GetCookie('BigMacCartQTY') === '0' ? 
+                        <button type="button" data-bs-dismiss="modal" className="col btn btn-danger border-0 px-3">
                             <b className="mb-0">Remove</b>
-                        </button> : <button type="button" className="col btn btn-success border-0 d-flex flex-row justify-content-between px-3">
+                        </button> : <button type="button" data-bs-dismiss="modal" className="col btn btn-success border-0 d-flex flex-row justify-content-between px-3" onClick={addToCart}>
                             <b className="mb-0">Add to basket</b>
-                            <b className="mb-0">฿139</b>
+                            <b className="mb-0">฿{139 * qty}</b>
                         </button>}
                     </div>
                 </div>
