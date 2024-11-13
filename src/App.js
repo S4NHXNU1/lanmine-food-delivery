@@ -6,6 +6,7 @@ import McDonald from './pages/McDonald';
 import { Toast } from 'bootstrap'
 import { useRef } from 'react';
 import UnavailableToast from './components/UnavailableToast';
+import Setting from './pages/Setting';
 
 function App() {
 
@@ -40,7 +41,7 @@ function App() {
             </li>
           </div>
           <li className="nav-item">
-            <Link to="/" className="nav-link fw-bold" style={{fontSize: '1.25rem'}}>
+            <Link to="/setting" className="nav-link fw-bold" style={{fontSize: '1.25rem'}}>
             <IconSettings stroke={2} className='me-2' />Setting
             </Link>
           </li>
@@ -50,6 +51,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Food />} />
           <Route path="/mcdonald" element={<McDonald />} />
+          <Route path="/setting" element={<Setting />} />
         </Routes>
         <UnavailableToast ref={toastRef} />
       </div>
