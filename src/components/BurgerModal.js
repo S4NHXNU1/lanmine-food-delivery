@@ -29,6 +29,13 @@ const BurgerModal = forwardRef((props, ref) => {
         sendBack();
     }
 
+    const removeFromCart = () => {
+        SetCookie('Cart', '0');
+        SetCookie('BigMacCartQTY', '1');
+        setQty(1);
+        sendBack();
+    }
+
     return (
         <div ref={ref} class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -53,10 +60,10 @@ const BurgerModal = forwardRef((props, ref) => {
                         <span className="col-1 mb-0 mt-0 text-center">{GetCookie('BigMacCartQTY')}</span>
                         <IconSquareRoundedPlusFilled style={{cursor: 'pointer'}} onClick={increaseQTY} />
                         {GetCookie('BigMacCartQTY') === '0' ? 
-                        <button type="button" data-bs-dismiss="modal" className="col btn btn-danger border-0 px-3">
+                        <button type="button" data-bs-dismiss="modal" className="col btn btn-danger border-0 px-3" onClick={removeFromCart}>
                             <b className="mb-0">Remove</b>
                         </button> : <button type="button" data-bs-dismiss="modal" className="col btn btn-success border-0 d-flex flex-row justify-content-between px-3" onClick={addToCart}>
-                            <b className="mb-0">Add to basket</b>
+                            <b className="mb-0">{GetCookie("Cart") === '0' ? "Add to basket" : "Update"}</b>
                             <b className="mb-0">฿{139 * qty}</b>
                         </button>}
                     </div>

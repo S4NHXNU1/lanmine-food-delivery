@@ -10,11 +10,14 @@ from '@tabler/icons-react';
 import PromoCard from '../components/PromoCard';
 import FoodCat from '../components/FoodCat';
 import UnavailableToast from '../components/UnavailableToast';
-import { Toast } from 'bootstrap'
-import { useRef } from 'react';
+import { Toast, Modal } from 'bootstrap'
+import { useRef, useState } from 'react';
 import { GetCookie } from '../util/Cookie';
+import CheckOutModal from '../components/CheckOutModal';
 
 export default function Food() {
+
+    const [reFetch, setReFetch] = useState(false);
 
     const toastRef = useRef(null);
     const triggerToast = () => {
@@ -22,6 +25,15 @@ export default function Food() {
         if (toastElement) {
             const toastInstance = Toast.getOrCreateInstance(toastElement);
             toastInstance.show();
+        }
+    };
+
+    const checkOutRef = useRef(null);
+    const triggerCheckOut = () => {
+        const checkOutElement = checkOutRef.current;
+        if (checkOutElement) {
+            const checkOutInstance = Modal.getOrCreateInstance(checkOutElement);
+            checkOutInstance.show();
         }
     };
 
@@ -89,9 +101,10 @@ export default function Food() {
                 </div>
             </div>
             { GetCookie("Cart") === "1" ? <div class="btn btn-success position-fixed bottom-0 end-0 m-3 d-flex flex-row rounded-circle border-0 pt-2" style={{width: '50px', height: '50px'}}>
-                <IconShoppingCart stroke={2} className='text-white' style={{width: '32px', height: '32px'}} />
+                <IconShoppingCart stroke={2} className='text-white' style={{width: '32px', height: '32px'}} onClick={triggerCheckOut} />
             </div> : null }
             <UnavailableToast ref={toastRef} />
+            <CheckOutModal ref={checkOutRef} sendBack={() => setReFetch(prev => !prev)} />
         </div>
     );
 }

@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import UnavailableToast from "../components/UnavailableToast";
 import BurgerModal from "../components/BurgerModal";
 import { GetCookie } from "../util/Cookie";
+import CheckOutModal from "../components/CheckOutModal";
 
 export default function McDonald() {
 
@@ -24,6 +25,15 @@ export default function McDonald() {
         if (modalElement) {
             const modalInstance = Modal.getOrCreateInstance(modalElement);
             modalInstance.show();
+        }
+    };
+
+    const checkOutRef = useRef(null);
+    const triggerCheckOut = () => {
+        const checkOutElement = checkOutRef.current;
+        if (checkOutElement) {
+            const checkOutInstance = Modal.getOrCreateInstance(checkOutElement);
+            checkOutInstance.show();
         }
     };
 
@@ -77,8 +87,11 @@ export default function McDonald() {
             </div>
             <UnavailableToast ref={toastRef} />
             <BurgerModal ref={modalRef} sendBack={() => setReFetch(prev => !prev)} />
+            <CheckOutModal ref={checkOutRef} sendBack={() => setReFetch(prev => !prev)} />
             {GetCookie('Cart') === '1' ? <div className="d-flex flex-row p-4 bg-white position-fixed shadow-lg" style={{height: '90px', width: '100vw', bottom: '0', left: '0'}}>
-                <button type="button" class="btn btn-success border-0 d-flex flex-row justify-content-between align-items-center position-fixed" style={{height: '3rem', width: '83vw', right: '1.6rem'}}>
+                <button type="button" class="btn btn-success border-0 d-flex flex-row justify-content-between align-items-center position-fixed" style={{height: '3rem', width: '83vw', right: '1.6rem'}}
+                    onClick={triggerCheckOut}
+                >
                     <div className="d-flex flex-row">
                         <b className="mb-0 bg-white text-success rounded-3 me-2" style={{width: '2rem'}}>{GetCookie('BigMacCartQTY')}</b>
                         <b className="mb-0">My basket</b>
