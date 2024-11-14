@@ -3,16 +3,21 @@ import { GetCookie, SetCookie } from "../util/Cookie";
 
 const LoginModal = forwardRef((props, ref) => {
 
+    const { sendBack } = props;
+
     const UserLogin = () => {
         SetCookie("role", "user");
+        sendBack();
     }
 
     const AdminLogin = () => {
         SetCookie("role", "admin");
+        sendBack();
     }
 
     const RestaurantLogin = () => {
         SetCookie("role", "restaurant");
+        sendBack();
     }
     
     return (
