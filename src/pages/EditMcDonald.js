@@ -1,13 +1,15 @@
-import McDonaldBanner from "../components/McDonaldBanner";
+import EditMcDonaldBanner from "../components/EditMcDonaldBanner";
 import { Toast, Modal } from 'bootstrap'
 import { useRef, useState } from 'react';
 import UnavailableToast from "../components/UnavailableToast";
-import BurgerModal from "../components/BurgerModal";
 import { GetCookie } from "../util/Cookie";
-import CheckOutModal from "../components/CheckOutModal";
-import { IconPencil, IconPhotoFilled } from '@tabler/icons-react';
+import { 
+    IconPencil,
+    IconPhotoFilled
+ } from '@tabler/icons-react';
+import AddModal from "../components/AddModal";
 
-export default function McDonald() {
+export default function EditMcDonald() {
 
     const [reFetch, setReFetch] = useState(false);
 
@@ -29,18 +31,10 @@ export default function McDonald() {
         }
     };
 
-    const checkOutRef = useRef(null);
-    const triggerCheckOut = () => {
-        const checkOutElement = checkOutRef.current;
-        if (checkOutElement) {
-            const checkOutInstance = Modal.getOrCreateInstance(checkOutElement);
-            checkOutInstance.show();
-        }
-    };
-
     return (
         <div className="d-flex flex-column">
-            <McDonaldBanner />
+            <EditMcDonaldBanner />
+            <button className="btn btn-success my-3 border-0" onClick={triggerModal}><b className="mb-0" style={{fontSize: '1rem'}}>+ Add Menu</b></button>
             {GetCookie("NewMenu") === '1' ?
             <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerToast}>
                 <div class="card-body d-flex flex-row justify-content-between">
@@ -52,9 +46,10 @@ export default function McDonald() {
                             <b className='mb-0 text-start mt-4'>{GetCookie("NewPrice")}</b>
                         </div>
                     </div>
+                    <IconPencil stroke={2} className="my-auto" onClick={triggerToast} />
                 </div>
             </div> : null}
-            <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerModal}>
+            <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerToast}>
                 <div class="card-body d-flex flex-row justify-content-between">
                     <div className='d-flex flex-row'>
                         <img 
@@ -67,6 +62,7 @@ export default function McDonald() {
                             <b className='mb-0 text-start mt-4'>฿139</b>
                         </div>
                     </div>
+                    <IconPencil stroke={2} className="my-auto" onClick={triggerToast} />
                 </div>
             </div>
             <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerToast}>
@@ -82,6 +78,7 @@ export default function McDonald() {
                             <b className='mb-0 text-start mt-4'>฿59</b>
                         </div>
                     </div>
+                    <IconPencil stroke={2} className="my-auto" onClick={triggerToast} />
                 </div>
             </div>
             <div class="btn btn-light flex-grow-1 card my-3" onClick={triggerToast}>
@@ -97,22 +94,11 @@ export default function McDonald() {
                             <b className='mb-0 text-start mt-4'>฿129</b>
                         </div>
                     </div>
+                    <IconPencil stroke={2} className="my-auto" onClick={triggerToast} />
                 </div>
             </div>
             <UnavailableToast ref={toastRef} />
-            <BurgerModal ref={modalRef} sendBack={() => setReFetch(prev => !prev)} />
-            <CheckOutModal ref={checkOutRef} sendBack={() => setReFetch(prev => !prev)} />
-            {GetCookie('Cart') === '1' ? <div className="d-flex flex-row p-4 bg-white position-fixed shadow-lg" style={{height: '90px', width: '100vw', bottom: '0', left: '0'}}>
-                <button type="button" class="btn btn-success border-0 d-flex flex-row justify-content-between align-items-center position-fixed" style={{height: '3rem', width: '83vw', right: '1.6rem'}}
-                    onClick={triggerCheckOut}
-                >
-                    <div className="d-flex flex-row">
-                        <b className="mb-0 bg-white text-success rounded-3 me-2" style={{width: '2rem'}}>{GetCookie('BigMacCartQTY')}</b>
-                        <b className="mb-0">My basket</b>
-                    </div>
-                    <b className="mb-0">฿{Number(GetCookie('BigMacCartQTY')) * 139}</b>
-                </button>
-            </div> : null}
+            <AddModal ref={modalRef} sendBack={() => setReFetch(prev => !prev)} />
         </div>
     );
 }

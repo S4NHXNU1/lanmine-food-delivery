@@ -7,6 +7,7 @@ import { Toast } from 'bootstrap'
 import { useRef } from 'react';
 import UnavailableToast from './components/UnavailableToast';
 import Setting from './pages/Setting';
+import EditMcDonald from './pages/EditMcDonald';
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="/" element={<Food />} />
           <Route path="/mcdonald" element={<McDonald />} />
           <Route path="/setting" element={<Setting />} />
+          <Route path='/editmcdonald' element={<EditMcDonald />} />
         </Routes>
         <UnavailableToast ref={toastRef} />
       </div>

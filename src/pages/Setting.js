@@ -47,7 +47,8 @@ export default function Setting() {
             <IconChevronRight className='my-auto text-secondary' stroke={2}/>
         </div>
         : GetCookie("role") === 'restaurant' ?
-        <div className="d-flex flex-row justify-content-between border-bottom bg-white p-4" style={{cursor: 'pointer'}}>
+        <div className="d-flex flex-row justify-content-between border-bottom bg-white p-4" style={{cursor: 'pointer'}}
+        onClick={() => {window.location.href = '/editmcdonald'}}>
             <p className='mb-0'>My Restaurant</p>
             <IconChevronRight className='my-auto text-secondary' stroke={2}/>
         </div>
