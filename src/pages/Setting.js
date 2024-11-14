@@ -42,7 +42,8 @@ export default function Setting() {
             </div>
         </div>
         {GetCookie("role") === 'admin' ? 
-        <div className="d-flex flex-row justify-content-between border-bottom bg-white p-4" style={{cursor: 'pointer'}}>
+        <div className="d-flex flex-row justify-content-between border-bottom bg-white p-4" style={{cursor: 'pointer'}}
+        onClick={() => {window.location.href = '/manageusers'}}>
             <p className='mb-0'>Manage Users</p>
             <IconChevronRight className='my-auto text-secondary' stroke={2}/>
         </div>

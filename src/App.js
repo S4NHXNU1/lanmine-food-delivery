@@ -8,6 +8,7 @@ import { useRef } from 'react';
 import UnavailableToast from './components/UnavailableToast';
 import Setting from './pages/Setting';
 import EditMcDonald from './pages/EditMcDonald';
+import ManageUser from './pages/ManagerUser';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
         className="bg-success border-end vh-100 pt-3 sticky-top" 
         style={{ width: '200px' }}
       >
-        <h2 className='text-white text-center'><b>LANMINE</b></h2>
+        <h2 className='text-white text-center'><b>LAN MINE</b></h2>
         <ul className="nav d-flex flex-column justify-content-between" style={{ height: '92vh' }}>
           <div>
             <li className="nav-item">
@@ -54,6 +55,7 @@ function App() {
           <Route path="/mcdonald" element={<McDonald />} />
           <Route path="/setting" element={<Setting />} />
           <Route path='/editmcdonald' element={<EditMcDonald />} />
+          <Route path='/manageusers' element={<ManageUser />} />
         </Routes>
         <UnavailableToast ref={toastRef} />
       </div>
