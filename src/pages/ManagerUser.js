@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Toast, Dropdown } from 'bootstrap';
 import UnavailableToast from '../components/UnavailableToast';
 import SampleData from '../components/SampleData';
@@ -6,9 +6,11 @@ import {
     IconAlertTriangleFilled,
     IconDotsVertical
  } from '@tabler/icons-react';
-import { GetCookie } from '../util/Cookie';
+import { GetCookie, SetCookie } from '../util/Cookie';
 
 export default function ManageUser(){
+
+    const [reFetch, setReFetch] = useState(false);
 
     const toastRef = useRef(null);
     const triggerToast = () => {
@@ -20,20 +22,37 @@ export default function ManageUser(){
     };
 
     const dropdownRef = useRef(null);
-    const triggerDropdown = () => {
+    let dropdownInstance;
+
+    useEffect(() => {
+        console.log("reFetch: ", reFetch);
         const dropdownElement = dropdownRef.current;
         if (dropdownElement) {
-            const dropdownInstance = Dropdown.getOrCreateInstance(dropdownElement);
+            dropdownInstance = Dropdown.getOrCreateInstance(dropdownElement);
+            dropdownInstance.show();
+        }
+    }, [reFetch]);
+
+    const triggerDropdown = () => {
+        if (dropdownInstance) {
             dropdownInstance.show();
         }
     };
 
+    const toggleUserActivation = () => {
+        if (GetCookie("SuspendUser") === '1') {
+            SetCookie("SuspendUser", "0");
+        } else {
+            SetCookie("SuspendUser", "1");
+        }
+    }
+
     return (
         <div className="d-flex flex-column">
-            <div className="d-flex flex-row justify-content-between rounded-3 bg-success" style={{width: '17.5rem', padding: '0.3rem'}}>
+            <div className="d-flex flex-row justify-content-between rounded-3" style={{width: '17.5rem', padding: '0.3rem', background: '#cafad8'}}>
                 <button className="btn border-0 bg-white text-success"><b>Users</b></button>
-                <button className="btn border-0 text-success" style={{background: '#e3fcea'}} onClick={triggerToast}><b>Restaurants</b></button>
-                <button className="btn border-0 text-success" style={{background: '#e3fcea'}} onClick={triggerToast}><b>Riders</b></button>
+                <button className="btn border-0 bg-success text-white" onClick={triggerToast}><b>Restaurants</b></button>
+                <button className="btn border-0 bg-success text-white" onClick={triggerToast}><b>Riders</b></button>
             </div>
             <table class="table table-hover mt-3">
                 <thead>
@@ -52,9 +71,10 @@ export default function ManageUser(){
                         <td>sanhanut.kun@student.mahidol.ac.th</td>
                         <td>10<IconAlertTriangleFilled className='text-danger ms-2'/></td>
                         <td>
-                            <button type='button' data-bs-toggle="dropdown" className='btn' aria-expanded="false" onClick={triggerDropdown}><IconDotsVertical /></button>
+                            <button type='button' data-bs-toggle="dropdown" className='btn' aria-expanded="false" onMouseEnter={() => setReFetch(!reFetch)} onClick={triggerDropdown}><IconDotsVertical className='text-black' /></button>
                             <ul class="dropdown-menu" ref={dropdownRef}>
-                                <li><a class="dropdown-item">{GetCookie("SuspendUser") === '1' ? "Activate" : "Suspend"}</a></li>
+                                <li><p class="dropdown-item mb-0" style={{cursor: 'pointer'}} onClick={triggerToast}>Show Info</p></li>
+                                <li><p class="dropdown-item mb-0" style={{cursor: 'pointer'}} onClick={toggleUserActivation}>{GetCookie("SuspendUser") === '1' ? "Activate" : "Suspend"}</p></li>
                             </ul>
                         </td>
                     </tr>
@@ -66,9 +86,9 @@ export default function ManageUser(){
                     <li class="page-item disabled">
                         <a class="page-link">Previous</a>
                     </li>
-                    <li class="page-item"><a class="page-link text-success" style={{cursor: 'pointer'}} onClick={triggerToast}>1</a></li>
-                    <li class="page-item"><a class="page-link text-success" style={{cursor: 'pointer'}} onClick={triggerToast}>2</a></li>
-                    <li class="page-item"><a class="page-link text-success" style={{cursor: 'pointer'}} onClick={triggerToast}>3</a></li>
+                    <li class="page-item"><p class="page-link text-success mb-0" style={{cursor: 'pointer'}} onClick={triggerToast}>1</p></li>
+                    <li class="page-item"><p class="page-link text-success mb-0" style={{cursor: 'pointer'}} onClick={triggerToast}>2</p></li>
+                    <li class="page-item"><p class="page-link text-success mb-0" style={{cursor: 'pointer'}} onClick={triggerToast}>3</p></li>
                     <li class="page-item">
                         <a class="page-link text-success" style={{cursor: 'pointer'}} onClick={triggerToast}>Next</a>
                     </li>
