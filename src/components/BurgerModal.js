@@ -63,7 +63,7 @@ const BurgerModal = forwardRef((props, ref) => {
                         <button type="button" data-bs-dismiss="modal" className="col btn btn-danger border-0 px-3" onClick={removeFromCart}>
                             <b className="mb-0">Remove</b>
                         </button> : <button type="button" data-bs-dismiss="modal" className="col btn btn-success border-0 d-flex flex-row justify-content-between px-3" onClick={addToCart}>
-                            <b className="mb-0">{GetCookie("Cart") === '0' ? "Add to basket" : "Update"}</b>
+                            <b className="mb-0">{GetCookie("Cart") === '1' ? "Update" : "Add to basket"}</b>
                             <b className="mb-0">฿{139 * qty}</b>
                         </button>}
                     </div>
