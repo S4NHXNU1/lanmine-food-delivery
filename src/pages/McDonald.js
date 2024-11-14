@@ -49,7 +49,7 @@ export default function McDonald() {
                         <div className='d-flex flex-column ms-4 my-auto'>
                             <h5 className='mb-0 text-start'><b>{GetCookie("NewName")}</b></h5>
                             <p className='mb-0 text-start text-secondary' style={{fontSize: '0.8rem'}}>{GetCookie("NewDescription")}</p>
-                            <b className='mb-0 text-start mt-4'>{GetCookie("NewPrice")}</b>
+                            <b className='mb-0 text-start mt-4'>฿{GetCookie("NewPrice")}</b>
                         </div>
                     </div>
                 </div>
